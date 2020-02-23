@@ -11,6 +11,8 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+/*
+** Rotas sem autenticação
+*/
+$router->post('/login', ['uses' => 'UserController@authenticate']);
+$router->post('/signup', ['uses' => 'UserController@signup']);
