@@ -82,4 +82,35 @@ class BooksController extends Controller
         }
   
     }
+
+    public function favorite(Request $request, $id)
+    {
+        $this->validate($request, [
+            'favorite' => 'required'
+        ]);
+
+        $favorite = $request->input('favorite', 0);
+
+        $book = Book::where('user_id', Auth::user()->id)->where('id', $id)->first();
+        $book->is_favorite = $favorite;
+
+        if($book->save()){
+            if($favorite){
+                return response()->json([
+                    'response' => 'Book has been added to favorites.',
+                    'book' => Book::where('id', $id)->first()->toArray()
+                ]);
+            }else{
+                return response()->json([
+                    'response' => 'Book has been removed from favorites.',
+                    'book' => Book::where('id', $id)->first()->toArray()
+                ]);
+            }
+        }else{
+            return response()->json([
+                'response' => 'Something is wrong! Please try again.'
+            ], 500);
+        }
+  
+    }
 }
