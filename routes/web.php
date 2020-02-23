@@ -15,5 +15,6 @@ $router->post('/login', ['uses' => 'UserController@authenticate']);
 $router->post('/signup', ['uses' => 'UserController@signup']);
 
 $router->group(['middleware' => 'auth',], function () use ($router) {
+    $router->get('/books', ['uses' => 'BooksController@getAll']);
     $router->post('/books', ['uses' => 'BooksController@create']);
 });

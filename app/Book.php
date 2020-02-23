@@ -8,7 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Books extends Model implements AuthenticatableContract, AuthorizableContract
+class Book extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
 

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Auth;
+use App\Book;
 
 class BooksController extends Controller
 {
@@ -29,6 +30,15 @@ class BooksController extends Controller
  
         return response()->json([
             'book' => $result->toArray()
+        ]);
+  
+    }
+
+    public function getAll(Request $request)
+    {
+
+        return response()->json([
+            'books' => Book::where('user_id', Auth::user()->id)->get()->toArray()
         ]);
   
     }

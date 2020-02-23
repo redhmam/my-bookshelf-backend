@@ -31,6 +31,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     public function books(){
-        return $this->hasMany('App\Books')->groupBy('user_id');
+        return $this->hasMany('App\Book')->groupBy('user_id');
     }
 }
