@@ -17,5 +17,6 @@ $router->post('/signup', ['uses' => 'UserController@signup']);
 $router->group(['middleware' => 'auth',], function () use ($router) {
     $router->get('/books', ['uses' => 'BooksController@getAll']);
     $router->post('/books', ['uses' => 'BooksController@create']);
+    $router->put('/books/{id}/list', ['uses' => 'BooksController@updateList']);
     $router->delete('/books/{id}', ['uses' => 'BooksController@delete']);
 });

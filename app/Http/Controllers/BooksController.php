@@ -15,7 +15,8 @@ class BooksController extends Controller
         $this->validate($request, [
             'bid' => 'required|unique:books',
             'title' => 'required',
-            'image' => 'required'
+            'image' => 'required',
+            'list' => 'required'
         ]);
 
         $user = Auth::user();
@@ -25,7 +26,7 @@ class BooksController extends Controller
             'title' => $request->input('title'),
             'image' => $request->input('image'),
             'is_favorite' => $request->input('is_favorite', 0),
-            'list' => $request->input('is_favorite', null)
+            'list' => $request->input('list')
         ]);
  
         return response()->json([
@@ -51,6 +52,28 @@ class BooksController extends Controller
         if($response){
             return response()->json([
                 'response' => 'Book has been deleted.'
+            ]);
+        }else{
+            return response()->json([
+                'response' => 'Something is wrong! Please try again.'
+            ], 500);
+        }
+  
+    }
+
+    public function updateList(Request $request, $id)
+    {
+        $this->validate($request, [
+            'list' => 'required'
+        ]);
+
+        $book = Book::where('user_id', Auth::user()->id)->where('id', $id)->first();
+        $book->list = $request->input('list');
+
+        if($book->save()){
+            return response()->json([
+                'response' => 'Book has been saved.',
+                'book' => Book::where('id', $id)->first()->toArray()
             ]);
         }else{
             return response()->json([
