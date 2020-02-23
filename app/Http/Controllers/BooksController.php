@@ -42,4 +42,21 @@ class BooksController extends Controller
         ]);
   
     }
+
+    public function delete(Request $request, $id)
+    {
+
+        $response = Book::where('user_id', Auth::user()->id)->where('id', $id)->delete();
+
+        if($response){
+            return response()->json([
+                'response' => 'Book has been deleted.'
+            ]);
+        }else{
+            return response()->json([
+                'response' => 'Something is wrong! Please try again.'
+            ], 500);
+        }
+  
+    }
 }
