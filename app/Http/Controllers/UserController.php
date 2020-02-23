@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -59,5 +60,11 @@ class UserController extends Controller
             'user' => $result->toArray()
         ]);
   
+    }
+
+    public function getLoggedUser(Request $request){
+        return response()->json([
+            'user' => Auth::user()->first()->toArray()
+        ]);
     }
 }
