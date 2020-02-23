@@ -31,7 +31,7 @@ class UserController extends Controller
      
          }else{
      
-            return response()->json(['response' => 'Email or password is invalid.'], 401);
+            return response()->json(['response' => 'Email or password is invalid.'], 422);
      
         }
   
