@@ -26,7 +26,7 @@ class UserController extends Controller
                 ->update(['api_token' => "$apikey"]);
      
             return response()->json([
-                'user' => $user->toArray()
+                'user' => array_merge($user->toArray(), ['api_token' => $apikey])
             ]);
      
          }else{
