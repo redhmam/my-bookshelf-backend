@@ -64,7 +64,7 @@ class UserController extends Controller
 
     public function getLoggedUser(Request $request){
         return response()->json([
-            'user' => Auth::user()->first()->toArray()
+            'user' => Auth::user()->toArray()
         ]);
     }
 }
