@@ -10,5 +10,5 @@ Manage all your books. You can organize by favorite, have read or wish read
 ## Development instructions
 
 - `composer install` ~ Install dependencies using composer.
-- `artisan migrate` ~ Create tables on databse.
+- `php artisan migrate` ~ Create tables on databse.
 - `php -S localhost:8000 -t public` ~ Run project on local php server.
