@@ -1,6 +1,6 @@
 
 # MybookShelf
-Manage all your books. You can organize by favorite, have read or wish read
+Manage all your books. You can organize by favorite, reading, want to read or read.
 
 ## Links
 - [Access demo website](https://dev-mybookshelf.netlify.com/)
